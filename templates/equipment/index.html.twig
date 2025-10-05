@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Equipment Dashboard{% endblock %}
+
+{% block body %}
+<div class="dashboard-content">
+    <h1 class="page-title">Equipment Dashboard</h1>
+
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Equipment Type</th>
+                    <th>Equipment</th>
+                    <th>Rent Date</th>
+                    <th>Payment</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for equipment in equipment %}
+                <tr>
+                    <td>{{ equipment.id }}</td>
+                    <td>{{ equipment.EquipmentType }}</td>
+                    <td>{{ equipment.Equipment }}</td>
+                    <td>{{ equipment.RentDate ? equipment.RentDate|date('Y-m-d') : '' }}</td>
+                    <td>{{ equipment.Payment }}</td>
+                    <td class="actions">
+                        <a href="{{ path('app_equipment_show', {'id': equipment.id}) }}" class="btn btn-show">Show</a>
+                        <a href="{{ path('app_equipment_edit', {'id': equipment.id}) }}" class="btn btn-edit">Edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6" class="no-records">No records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="action-bar">
+        <a href="{{ path('app_equipment_new') }}" class="btn btn-create">+ Create New Equipment</a>
+    </div>
+</div>
+{% endblock %}

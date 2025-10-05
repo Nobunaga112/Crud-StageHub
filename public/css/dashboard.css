@@ -1,0 +1,317 @@
+/* ======== DARK DASHBOARD STYLES ======== */
+body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #10141b;
+    color: #e0e0e0;
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ======== SIDEBAR ======== */
+.sidebar {
+    width: 240px;
+    background-color: #1b1f27;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.4);
+}
+
+.sidebar h2 {
+    color: #00aaff;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+.sidebar a {
+    color: #ccc;
+    text-decoration: none;
+    padding: 0.7rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.sidebar a:hover {
+    background-color: #00aaff;
+    color: #fff;
+    box-shadow: 0 0 10px #00aaff, 0 0 20px #00aaff;
+}
+
+/* ======== MAIN CONTENT ======== */
+.main-content {
+    margin-left: 240px;
+    padding: 2rem;
+    width: calc(100% - 240px);
+}
+
+h1 {
+    color: #00ccff;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* ======== TABLE ======== */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1b1f27;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.table th, .table td {
+    padding: 1rem;
+    border-bottom: 1px solid #2c323d;
+    text-align: left;
+}
+
+.table th {
+    background-color: #212632;
+    color: #00ccff;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.table tr:hover {
+    background-color: #272d38;
+}
+
+/* ======== BUTTONS ======== */
+a, .btn {
+    display: inline-block;
+    background-color: #00aaff;
+    color: white;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+a:hover, .btn:hover {
+    background-color: #0090dd;
+    box-shadow: 0 0 10px #00aaff, 0 0 25px #00aaff;
+}
+
+.create-btn {
+    margin-top: 1.5rem;
+    display: inline-block;
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 768px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+/* --- Create New Equipment Page Styling --- */
+
+.form-card {
+  background: rgba(30, 30, 30, 0.9);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+  padding: 40px;
+  margin: 60px auto;
+  max-width: 600px;
+  color: #f5f5f5;
+  backdrop-filter: blur(8px);
+}
+
+.form-card h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #00ffff;
+  margin-bottom: 25px;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* Symfony form fields */
+form div {
+  margin-bottom: 20px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #00ffff;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  outline: none;
+}
+
+.btn {
+  display: inline-block;
+  width: 100%;
+  background: linear-gradient(90deg, #00ffff, #007bff);
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+}
+
+.btn:hover {
+  background: linear-gradient(90deg, #007bff, #00ffff);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+}
+
+.back-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.back-link a {
+  color: #00ffff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.back-link a:hover {
+  color: #007bff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+}
+
+/* Dashboard content layout */
+.dashboard-content {
+  margin-left: 250px;
+  padding: 50px 70px;
+  min-height: 100vh;
+  background-color: #121212;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+/* Title */
+.page-title {
+  font-size: 2rem;
+  color: #00ffff;
+  margin-bottom: 25px;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+}
+
+/* Table container */
+.table-container {
+  background: #1e1e1e;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
+  overflow-x: auto;
+}
+
+/* Table styling */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  background: #181818;
+  color: #00ffff;
+  font-weight: bold;
+  padding: 15px;
+  border-bottom: 2px solid rgba(0, 255, 255, 0.2);
+}
+
+.table td {
+  padding: 12px 15px;
+  color: #ddd;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.table tr:hover {
+  background: rgba(0, 255, 255, 0.08);
+  transition: 0.2s ease-in-out;
+}
+
+.no-records {
+  text-align: center;
+  padding: 20px;
+  color: #777;
+}
+
+/* Action buttons */
+.btn {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-show {
+  background: linear-gradient(135deg, #007bff, #00ffff);
+  color: #fff;
+}
+
+.btn-show:hover {
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+}
+
+.btn-edit {
+  background: linear-gradient(135deg, #00ffcc, #007bff);
+  color: #111;
+}
+
+.btn-edit:hover {
+  box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+  color: #fff;
+}
+
+.btn-create {
+  display: inline-block;
+  margin-top: 20px;
+  background: linear-gradient(135deg, #00ffff, #007bff);
+  color: #111;
+  padding: 8px 16px; /* smaller, proportional size */
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: none; /* remove uppercase for cleaner text width */
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-create:hover {
+  background: linear-gradient(135deg, #007bff, #00ffff);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+  color: #fff;
+}
+
+
+/* Action bar for bottom button */
+.action-bar {
+  margin-top: 30px;
+  text-align: right;
+}
