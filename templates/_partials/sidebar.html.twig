@@ -1,9 +1,27 @@
-<nav class="sidebar">
-    <h2 class="sidebar-title">Dashboard</h2>
-    <ul class="sidebar-menu">
-        <li><a href="{{ path('app_equipment_index') }}">Equipment List</a></li>
-        <li><a href="{{ path('app_equipment_new') }}">Add New Equipment</a></li>
-        <li><a href="#">Reports</a></li>
-        <li><a href="#">Settings</a></li>
-    </ul>
-</nav>
+<div class="sidebar">
+    <h2>StageHub</h2>
+
+    {# Website Dashboard Link #}
+    <a href="{{ path('app_admin_dashboard') }}" 
+       class="{{ app.request.attributes.get('_route') == 'app_admin_dashboard' ? 'active' : '' }}">
+        Dashboard
+    </a>
+
+    {# Equipment Link #}
+    <a href="{{ path('app_equipment_index') }}" 
+       class="{{ app.request.attributes.get('_route') == 'app_equipment_index' ? 'active' : '' }}">
+        Equipment
+    </a>
+
+    {# New Booking Link #}
+    <a href="{{ path('app_booking_index') }}" 
+       class="{{ app.request.attributes.get('_route') starts with 'app_booking' ? 'active' : '' }}">
+        Booking
+    </a>
+
+    {# Optional: Direct Add Equipment (can remain commented) #}
+    {# <a href="{{ path('app_equipment_new') }}" 
+       class="{{ app.request.attributes.get('_route') == 'app_equipment_new' ? 'active' : '' }}">
+        Add New Equipment
+    </a> #}
+</div>

@@ -1,0 +1,371 @@
+/* ===============================
+   StageHub Frontend Theme
+   Beige–Gold & Espresso
+   =============================== */
+
+body {
+  background-color: #F5F0EB;
+  color: #2E1F1D;
+  font-family: 'Inter', sans-serif;
+}
+/* ===============================
+   NAVBAR FIX + SCROLL FIX
+=============================== */
+body {
+  padding-top: 55px; /* offset for fixed navbar */
+}
+
+.stagehub-navbar {
+  background-color: #7F5530 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1050;
+}
+
+.stagehub-navbar .nav-link {
+  color: #dcb792 !important;
+  font-weight: 500;
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
+
+.stagehub-navbar .nav-link:hover {
+  color: #cc5501 !important;
+}
+
+/* When navbar becomes transparent on scroll top (optional aesthetic) */
+.stagehub-navbar.scrolled {
+  background-color: rgba(127, 85, 48, 0.95) !important;
+  transition: background-color 0.4s ease;
+}
+
+
+h1, h2, h3, .navbar-brand {
+  font-family: 'Rubik One', sans-serif;
+}
+
+.btn-dark {
+  background-color: #7F5530;
+  border: none;
+}
+
+.btn-dark:hover {
+  background-color: #5a3d22;
+}
+
+footer {
+  font-size: 0.9rem;
+}
+/* ===============================
+   DEFAULT BACKGROUND FOR ALL PAGES
+=============================== */
+body {
+  background-color: #dcb792; /* solid beige-gold */
+  color: #2E1F1D;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ===============================
+   HERO SECTION
+=============================== */
+.hero-section {
+  position: relative;
+  height: 80vh;
+  background: url('../images/hero-stage.jpg') center center / cover no-repeat;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55); /* Dark overlay */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content h1 {
+  font-family: 'Rubik One', sans-serif;
+  font-size: 3.5rem;
+  color: #fff;
+}
+
+.hero-content p {
+  color: #f1f1f1;
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ===============================
+   GOLD BUTTON
+=============================== */
+.btn-gold {
+  background-color: #C7A252; /* gold tone */
+  color: #000;
+  font-weight: 600;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-gold:hover {
+  background-color: #a8873d;
+  color: #fff;
+}
+.navbar .btn:hover {
+  opacity: 0.85;
+}
+
+.navbar .dropdown-menu .dropdown-item:hover {
+  background-color: #cc5501;
+  color: #fff !important;
+}
+
+.navbar .nav-link {
+  font-weight: 500;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+/* ===============================
+   EQUIPMENT PAGE CARDS
+=============================== */
+.hover-card {
+  transition: all 0.3s ease-in-out;
+}
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.category-card img {
+  height: 120px;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.category-card {
+  transition: all 0.3s ease-in-out;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Reuse your gold tone for button consistency */
+.btn-gold {
+  background-color: #B68D40;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-gold:hover {
+  background-color: #a57e36;
+  color: #fff;
+}
+/* ===============================
+   EQUIPMENT SECTION STYLING
+   =============================== */
+
+.featured-section, .categories-section {
+  background-color: #dcb792; /* StageHub beige-gold tone */
+  padding: 60px 0;
+  border-radius: 8px;
+}
+
+.section-title {
+  text-align: center;
+  font-family: 'Rubik One', sans-serif;
+  font-size: 2rem;
+  color: #2E1F1D;
+  margin-bottom: 40px;
+}
+
+/* Equipment Cards */
+.equipment-card {
+  background-color: #fff;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+  height: 100%;
+}
+
+.equipment-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  background-color: #cc5501; /* Hover color */
+  color: #fff;
+}
+
+.equipment-card:hover h5,
+.equipment-card:hover p {
+  color: #fff;
+}
+
+.equipment-card h5 {
+  font-weight: 700;
+  color: #2E1F1D;
+  font-family: 'Inter', sans-serif;
+}
+
+.equipment-card p {
+  color: #4a3b36;
+  font-size: 0.95rem;
+}
+
+.equipment-type {
+  font-size: 0.9rem;
+  color: #7b5e4b;
+}
+
+/* Consistent square sizing */
+.equipment-card img {
+  height: 180px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 16px 16px 0 0;
+}
+
+/* Footer spacing fix */
+footer {
+  margin-top: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+/* ===============================
+   FEATURED & CATEGORY SECTIONS
+=============================== */
+.featured-section, 
+.categories-section {
+  background-color: #dcb792 !important;
+  border-radius: 8px;
+  padding: 60px 0;
+}
+
+.section-title {
+  font-family: 'Rubik One', sans-serif;
+  font-size: 2rem;
+  color: #2E1F1D !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Card Styling */
+.equipment-card {
+  background-color: #fff !important;
+  border-radius: 12px !important;
+  border: none !important;
+  overflow: hidden;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1) !important;
+  height: 100% !important;
+}
+
+.equipment-card:hover {
+  background-color: #cc5501 !important;
+  color: #fff !important;
+  transform: translateY(-6px) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+}
+
+.equipment-card:hover h5,
+.equipment-card:hover h6,
+.equipment-card:hover p {
+  color: #fff !important;
+}
+
+.equipment-card img {
+  height: 180px !important;
+  width: 100% !important;
+  object-fit: cover !important;
+}
+
+.equipment-type {
+  color: #7f5530 !important;
+  font-size: 0.9rem !important;
+  margin-bottom: 0.5rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px;
+}
+
+/* Smooth scroll for Explore Equipment button */
+html {
+  scroll-behavior: smooth;
+}
+/* ===============================
+   HOME PAGE BACKGROUND
+=============================== */
+.home-page {
+  background: url('../images/background.jpg') center center / cover no-repeat fixed;
+  position: relative;
+  min-height: 100vh;
+}
+
+.home-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35); /* subtle overlay */
+  z-index: 0;
+}
+
+.home-page * {
+  position: relative;
+  z-index: 1;
+}
+.hero-section .btn {
+  background-color: #cc5501 !important;
+  color: #fff !important;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.hero-section .btn:hover {
+  background-color: #a54400 !important;
+  transform: translateY(-2px);
+}
+body.website_equipment {
+  background-color: #dcb792 !important;
+}
+.hero-section .btn {
+  background-color: #cc5501 !important;
+  color: #fff !important;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.hero-section .btn:hover {
+  background-color: #a54400 !important;
+  transform: translateY(-2px);
+}
+.equipment-page {
+  background-color: #dcb792; /* StageHub beige-gold tone */
+  min-height: calc(100vh - 80px); /* ensures it fills page height but doesn’t overflow */
+  padding-top: 80px; /* adjust for fixed navbar */
+  padding-bottom: 40px; /* spacing before footer */
+}
+.btn-outline-secondary {
+  border-color: #7F5530;
+  color: #7F5530;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #7F5530;
+  color: #fff;
+}

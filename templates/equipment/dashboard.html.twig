@@ -1,0 +1,78 @@
+{# templates/equipment/dashboard.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Website Dashboard{% endblock %}
+
+{# ✅ Add this block to include your new main-dashboard.css #}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/main-dashboard.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="main-content">
+        <h1>Website Dashboard</h1>
+
+        <div class="dashboard-stats-grid">
+            <div class="stat-card">
+                <h3>Total Users</h3>
+                <p>{{ total_users }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Active Rentals</h3>
+                <p>{{ active_rentals }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Pending Rentals</h3>
+                <p>{{ pending_rentals }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Completd Rentals</h3>
+                <p>{{ completed_rentals }}</p>
+            </div>
+             <div class="stat-card">
+                <h3>Rental Sales</h3>
+                <p>${{ rental_sales|number_format(2, '.', ',') }}</p>
+            </div>
+        </div>
+
+        <div class="dashboard-section">
+            <h2>Latest Bookings</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Equipment</th>
+                            <th>Status</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for booking in latest_bookings %}
+                        <tr>
+                            <td>{{ booking.id }}</td>
+                            <td>{{ booking.customer }}</td>
+                            <td>{{ booking.equipment }}</td>
+                            <td>{{ booking.status }}</td>
+                            <td>{{ booking.startDate }}</td>
+                            <td>{{ booking.endDate }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="dashboard-section">
+            <h2>Website Pages & Content</h2>
+            <ul>
+                <li><a href="#">Manage About Us Page</a></li>
+                <li><a href="#">Manage Contact Page</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

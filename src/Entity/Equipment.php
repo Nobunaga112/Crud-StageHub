@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\EquipmentRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EquipmentRepository::class)]
@@ -20,11 +19,11 @@ class Equipment
     #[ORM\Column(length: 255)]
     private ?string $Equipment = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTime $Rent_Date = null;
+    #[ORM\Column]
+    private ?bool $Availability = null;
 
     #[ORM\Column]
-    private ?float $Payment = null;
+    private ?float $Price = null;
 
     public function getId(): ?int
     {
@@ -55,26 +54,26 @@ class Equipment
         return $this;
     }
 
-    public function getRentDate(): ?\DateTime
+    public function isAvailability(): ?bool
     {
-        return $this->Rent_Date;
+        return $this->Availability;
     }
 
-    public function setRentDate(\DateTime $Rent_Date): static
+    public function setAvailability(bool $Availability): static
     {
-        $this->Rent_Date = $Rent_Date;
+        $this->Availability = $Availability;
 
         return $this;
     }
 
-    public function getPayment(): ?float
+    public function getPrice(): ?float
     {
-        return $this->Payment;
+        return $this->Price;
     }
 
-    public function setPayment(float $Payment): static
+    public function setPrice(float $Price): static
     {
-        $this->Payment = $Payment;
+        $this->Price = $Price;
 
         return $this;
     }

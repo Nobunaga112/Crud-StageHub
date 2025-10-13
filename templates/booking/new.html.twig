@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book Equipment{% endblock %}
+
+{% block body %}
+    <h1>Book Equipment</h1>
+
+    {{ include('booking/_form.html.twig', { button_label: 'Book Now' }) }}
+{% endblock %}

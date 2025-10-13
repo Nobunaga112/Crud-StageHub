@@ -1,0 +1,91 @@
+{% extends 'website/base.html.twig' %}
+
+{% block title %}Equipment | StageHub{% endblock %}
+
+{% block body %}
+<div class="container-fluid py-5 equipment-page">
+  <div class="row">
+    <!-- ================= SIDEBAR FILTERS ================= -->
+<aside class="col-lg-3 mb-4">
+  <form method="get" action="{{ path('website_equipment') }}">
+    <div class="card border-0 shadow-sm p-4" style="background-color: #fff7f0;">
+      <h5 class="fw-bold mb-3" style="color:#7F5530;">Filters</h5>
+
+      <!-- Category -->
+        <div class="mb-4">
+    <h6 class="fw-semibold" style="color:#7F5530;">Category</h6>
+    {% for category in categories %}
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="category[]" value="{{ category }}"
+               id="{{ category|lower|replace({' ':'_'}) }}"
+               {% if category in app.request.query.all('category') %}checked{% endif %}>
+        <label class="form-check-label" for="{{ category|lower|replace({' ':'_'}) }}">{{ category }}</label>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="mb-4">
+    <h6 class="fw-semibold" style="color:#7F5530;">Price Range</h6>
+    <div class="d-flex gap-2">
+      <input type="number" class="form-control" name="min" placeholder="Min"
+             value="{{ app.request.query.get('min') }}">
+      <input type="number" class="form-control" name="max" placeholder="Max"
+             value="{{ app.request.query.get('max') }}">
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <h6 class="fw-semibold" style="color:#7F5530;">Availability</h6>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="availability" value="1"
+             id="inStock" {% if app.request.query.get('availability') == '1' %}checked{% endif %}>
+      <label class="form-check-label" for="inStock">In Stock</label>
+    </div>
+  </div>
+
+  <div class="d-flex flex-column gap-2 mt-3">
+  <button class="btn btn-gold fw-semibold" type="submit">Apply Filters</button>
+  
+</div>
+
+</form>
+
+</aside>
+
+
+    <!-- ================= MAIN EQUIPMENT GRID ================= -->
+    <section class="col-lg-9">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4 class="fw-bold" style="color:#7F5530;">Available Equipment</h4>
+        <select class="form-select w-auto">
+          <option>Sort by: Popularity</option>
+          <option>Price: Low to High</option>
+          <option>Price: High to Low</option>
+        </select>
+      </div>
+
+      <div class="row g-4">
+        {% for equipment in equipmentList %}
+          <div class="col-md-4 col-sm-6">
+            <div class="card equipment-card h-100 text-center">
+              <div class="card-body d-flex flex-column justify-content-between">
+                <div>
+                  <h6 class="fw-bold mb-2">{{ equipment.Equipment }}</h6>
+                  <p class="text-muted mb-2">{{ equipment.EquipmentType }}</p>
+                  <p class="text-muted mb-2">₱{{ equipment.Price|number_format(2, '.', ',') }}</p>
+                  <p class="text-muted small">
+                    {{ equipment.Availability ? 'Available' : 'Unavailable' }}
+                  </p>
+                </div>
+                <button class="btn btn-gold w-100">Rent Now</button>
+              </div>
+            </div>
+          </div>
+        {% else %}
+          <p class="text-center text-muted">No equipment available at the moment.</p>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+</div>
+{% endblock %}

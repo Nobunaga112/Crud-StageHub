@@ -1,0 +1,89 @@
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top stagehub-navbar" style="background-color:#7F5530;">
+  <div class="container-fluid">
+    <!-- Left side: Logo + Nav links -->
+    <div class="d-flex align-items-center">
+      <!-- Brand / Logo -->
+      <a class="navbar-brand fw-bold me-4" href="{{ path('website_home') }}" style="color:#dcb792; font-family:'Rubik One';">
+        StageHub
+      </a>
+
+      <!-- Toggle button for mobile -->
+      <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar Links -->
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {# ✅ Smooth scroll only when on the home page #}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('website_home') }}#hero">Home</a>
+          </li>
+          {# ✅ Equipment page route #}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('website_equipment') }}">Equipment</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Right side: Login & Sign Up buttons -->
+    <div class="d-flex ms-auto gap-2">
+      <a href="#" class="btn btn-outline-light btn-sm login-btn">Login</a>
+      <a href="#" class="btn btn-light btn-sm signup-btn">Sign Up</a>
+    </div>
+  </div>
+</nav>
+
+
+<style>
+  /* Navbar link styles */
+  .navbar .nav-link {
+    color: #dcb792 !important;
+    font-weight: 500;
+    margin-right: 10px;
+    transition: color 0.3s ease;
+  }
+
+  .navbar .nav-link:hover {
+    color: #cc5501 !important;
+  }
+
+  /* Toggle button hover color */
+  .custom-toggler {
+    border-color: #dcb792;
+  }
+
+  .custom-toggler:hover {
+    background-color: #cc5501;
+  }
+
+  .custom-toggler:focus {
+    box-shadow: none;
+  }
+
+  /* Change the color of the hamburger icon */
+  .custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(220,183,146)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
+
+  /* Login and Sign Up Buttons */
+  .login-btn,
+  .signup-btn {
+    background-color: #dcb792;
+    color: #fff !important;
+    border: none;
+    font-weight: 500;
+    border-radius: 20px;
+    padding: 5px 15px;
+    transition: all 0.3s ease;
+  }
+
+  .login-btn:hover,
+  .signup-btn:hover {
+    background-color: #cc5501;
+    color: #fff !important;
+  }
+</style>

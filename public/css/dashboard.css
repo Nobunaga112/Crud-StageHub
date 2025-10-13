@@ -1,9 +1,15 @@
-/* ======== DARK DASHBOARD STYLES ======== */
+/* ===============================
+   STAGEHUB DASHBOARD THEME
+   Elegant Beige-Gold & Espresso
+   =============================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
 body {
     margin: 0;
-    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #10141b;
-    color: #e0e0e0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #F5F0EB;
+    color: #2E1F1D;
     display: flex;
     min-height: 100vh;
 }
@@ -11,101 +17,133 @@ body {
 /* ======== SIDEBAR ======== */
 .sidebar {
     width: 240px;
-    background-color: #1b1f27;
+    background-color: #2E1F1D;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    padding: 1.5rem 1rem;
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
-    box-shadow: 2px 0 10px rgba(0,0,0,0.4);
+    box-shadow: 4px 0 15px rgba(0,0,0,0.2);
 }
 
 .sidebar h2 {
-    color: #00aaff;
+    color: #D5BDAF;
+    font-size: 1.4rem;
     margin-bottom: 2rem;
     text-align: center;
-    font-size: 1.4rem;
     letter-spacing: 1px;
 }
 
 .sidebar a {
-    color: #ccc;
+    color: #E8DED8;
     text-decoration: none;
-    padding: 0.7rem 1rem;
-    border-radius: 6px;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
     margin-bottom: 0.5rem;
     transition: 0.3s;
     font-weight: 500;
 }
 
 .sidebar a:hover {
-    background-color: #00aaff;
-    color: #fff;
-    box-shadow: 0 0 10px #00aaff, 0 0 20px #00aaff;
+    background-color: #D5BDAF;
+    color: #2E1F1D;
 }
 
 /* ======== MAIN CONTENT ======== */
 .main-content {
     margin-left: 240px;
-    padding: 2rem;
+    padding: 3rem;
     width: calc(100% - 240px);
 }
 
-h1 {
-    color: #00ccff;
+.page-title {
     font-size: 2rem;
-    margin-bottom: 1.5rem;
+    color: #2E1F1D;
+    margin-bottom: 1.8rem;
+    border-bottom: 3px solid #D5BDAF;
+    display: inline-block;
+    padding-bottom: 5px;
 }
 
 /* ======== TABLE ======== */
+.table-container {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    overflow-x: auto;
+}
+
 .table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #1b1f27;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 .table th, .table td {
-    padding: 1rem;
-    border-bottom: 1px solid #2c323d;
+    padding: 14px 16px;
     text-align: left;
+    border-bottom: 1px solid #E5DCD5;
 }
 
 .table th {
-    background-color: #212632;
-    color: #00ccff;
-    text-transform: uppercase;
-    font-size: 0.9rem;
+    color: #2E1F1D;
+    font-weight: 600;
+    background-color: #F5F0EB;
 }
 
 .table tr:hover {
-    background-color: #272d38;
+    background-color: #FFF7F0;
 }
 
 /* ======== BUTTONS ======== */
-a, .btn {
+.btn {
     display: inline-block;
-    background-color: #00aaff;
-    color: white;
-    padding: 0.6rem 1rem;
+    border: none;
+    padding: 10px 18px;
     border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
     text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
 
-a:hover, .btn:hover {
-    background-color: #0090dd;
-    box-shadow: 0 0 10px #00aaff, 0 0 25px #00aaff;
+.btn-show {
+    background-color: #D5BDAF;
+    color: #2E1F1D;
 }
 
-.create-btn {
-    margin-top: 1.5rem;
-    display: inline-block;
+.btn-show:hover {
+    background-color: #C7A996;
+}
+
+.btn-edit {
+    background-color: #2E1F1D;
+    color: #FFFFFF;
+}
+
+.btn-edit:hover {
+    background-color: #4A302D;
+}
+
+.btn-create {
+    background-color: #D5BDAF;
+    color: #2E1F1D;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.btn-create:hover {
+    background-color: #C7A996;
+    color: #1A0F0D;
+}
+
+.action-bar {
+    margin-top: 30px;
+    text-align: right;
 }
 
 /* ======== RESPONSIVE ======== */
@@ -118,200 +156,175 @@ a:hover, .btn:hover {
     .main-content {
         margin-left: 0;
         width: 100%;
+        padding: 1.5rem;
     }
 }
-
-/* --- Create New Equipment Page Styling --- */
-
-.form-card {
-  background: rgba(30, 30, 30, 0.9);
-  border: 1px solid rgba(0, 255, 255, 0.3);
-  border-radius: 16px;
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
-  padding: 40px;
-  margin: 60px auto;
-  max-width: 600px;
-  color: #f5f5f5;
-  backdrop-filter: blur(8px);
+/* ======== DELETE ICON (non-intrusive, matches dashboard theme) ======== */
+.delete-form {
+    display: inline-block;
+    margin: 0;
 }
 
-.form-card h1 {
-  text-align: center;
-  font-size: 1.8rem;
-  color: #00ffff;
-  margin-bottom: 25px;
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+.btn-icon {
+    background: none;
+    border: none;
+    color: #2E1F1D;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 8px;
+    vertical-align: middle;
+    transition: color 0.25s ease, transform 0.2s ease;
 }
 
-/* Symfony form fields */
-form div {
-  margin-bottom: 20px;
+.btn-icon:hover {
+    color: #A94442; /* subtle red accent on hover */
+    transform: scale(1.15);
+}
+/* ===============================
+   DASHBOARD PAGE STYLES
+   =============================== */
+
+.main-content {
+    padding: 2rem 3rem;
+    background-color: #FAF5EF;
+    min-height: 100vh;
 }
 
-input, select, textarea {
-  width: 100%;
-  padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(0, 255, 255, 0.3);
-  color: #fff;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
+.main-content h1 {
+    font-size: 1.8rem;
+    color: #2E1F1D;
+    font-family: "Rubik One", sans-serif;
+    margin-bottom: 2rem;
 }
 
-input:focus, select:focus, textarea:focus {
-  border-color: #00ffff;
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-  outline: none;
+/* ===== STATS GRID ===== */
+.dashboard-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
 }
 
-.btn {
-  display: inline-block;
-  width: 100%;
-  background: linear-gradient(90deg, #00ffff, #007bff);
-  color: #fff;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+.stat-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.25s ease;
 }
 
-.btn:hover {
-  background: linear-gradient(90deg, #007bff, #00ffff);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 
-.back-link {
-  text-align: center;
-  margin-top: 20px;
+.stat-card h3 {
+    font-size: 1rem;
+    color: #8b6b61;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
 }
 
-.back-link a {
-  color: #00ffff;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
+.stat-card p {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2E1F1D;
+    margin: 0;
 }
 
-.back-link a:hover {
-  color: #007bff;
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+/* ===== DASHBOARD SECTIONS ===== */
+.dashboard-section {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
 }
 
-/* Dashboard content layout */
-.dashboard-content {
-  margin-left: 250px;
-  padding: 50px 70px;
-  min-height: 100vh;
-  background-color: #121212;
-  color: #fff;
-  box-sizing: border-box;
+.dashboard-section h2 {
+    color: #2E1F1D;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid #D5BDAF;
+    padding-left: 10px;
 }
 
-/* Title */
-.page-title {
-  font-size: 2rem;
-  color: #00ffff;
-  margin-bottom: 25px;
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+/* ===== TABLE ===== */
+.table-responsive {
+    overflow-x: auto;
 }
 
-/* Table container */
-.table-container {
-  background: #1e1e1e;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
-  overflow-x: auto;
+.dashboard-section table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-/* Table styling */
-.table {
-  width: 100%;
-  border-collapse: collapse;
+.dashboard-section th,
+.dashboard-section td {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid #F0E5DE;
 }
 
-.table th {
-  background: #181818;
-  color: #00ffff;
-  font-weight: bold;
-  padding: 15px;
-  border-bottom: 2px solid rgba(0, 255, 255, 0.2);
+.dashboard-section th {
+    background-color: #F8F5F2;
+    color: #2E1F1D;
+    font-weight: 600;
+    font-size: 0.95rem;
 }
 
-.table td {
-  padding: 12px 15px;
-  color: #ddd;
-  border-bottom: 1px solid #2a2a2a;
+.dashboard-section td {
+    color: #3b2a28;
+    font-size: 0.9rem;
 }
 
-.table tr:hover {
-  background: rgba(0, 255, 255, 0.08);
-  transition: 0.2s ease-in-out;
+.dashboard-section tr:hover {
+    background-color: #FFF8F4;
 }
 
-.no-records {
-  text-align: center;
-  padding: 20px;
-  color: #777;
+/* ===== LINKS SECTION ===== */
+.dashboard-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-/* Action buttons */
-.btn {
-  display: inline-block;
-  padding: 8px 14px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
+.dashboard-section li {
+    background-color: #F8F5F2;
+    border-radius: 8px;
+    margin-bottom: 0.6rem;
+    transition: background 0.25s ease;
 }
 
-.btn-show {
-  background: linear-gradient(135deg, #007bff, #00ffff);
-  color: #fff;
+.dashboard-section li:hover {
+    background-color: #D5BDAF;
 }
 
-.btn-show:hover {
-  box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+.dashboard-section a {
+    display: block;
+    padding: 0.9rem 1.2rem;
+    color: #2E1F1D;
+    font-weight: 500;
+    text-decoration: none;
+    position: relative;
 }
 
-.btn-edit {
-  background: linear-gradient(135deg, #00ffcc, #007bff);
-  color: #111;
+.dashboard-section a::after {
+    content: "›";
+    position: absolute;
+    right: 1rem;
+    color: #2E1F1D;
+    font-size: 1.1rem;
 }
 
-.btn-edit:hover {
-  box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
-  color: #fff;
-}
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+    .main-content {
+        padding: 2rem 1.2rem;
+    }
 
-.btn-create {
-  display: inline-block;
-  margin-top: 20px;
-  background: linear-gradient(135deg, #00ffff, #007bff);
-  color: #111;
-  padding: 8px 16px; /* smaller, proportional size */
-  border-radius: 6px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-transform: none; /* remove uppercase for cleaner text width */
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.btn-create:hover {
-  background: linear-gradient(135deg, #007bff, #00ffff);
-  box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
-  color: #fff;
-}
-
-
-/* Action bar for bottom button */
-.action-bar {
-  margin-top: 30px;
-  text-align: right;
+    .dashboard-stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
 }
