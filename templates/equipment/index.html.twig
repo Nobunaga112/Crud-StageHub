@@ -25,9 +25,18 @@
                         <td>{{ equipment.equipment }}</td>
                         <td>{{ equipment.availability ? 'Yes' : 'No' }}</td>
                         <td>{{ equipment.price }}</td>
-                        <td>
+                        <td class="actions-cell">
                             <a href="{{ path('app_equipment_show', {'id': equipment.id}) }}" class="btn btn-show">Show</a>
                             <a href="{{ path('app_equipment_edit', {'id': equipment.id}) }}" class="btn btn-edit">Edit</a>
+
+                            <form method="post" action="{{ path('app_equipment_delete', {'id': equipment.id}) }}" onsubmit="return confirm('Are you sure you want to delete this equipment?');" class="delete-form">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ equipment.id) }}">
+                                <button class="btn-icon" title="Delete Equipment">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7L18.132 19.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.994-1.858L5 7m5 4v6m4-6v6M9 4h6a1 1 0 011 1v1H8V5a1 1 0 011-1z" />
+                                    </svg>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 {% else %}

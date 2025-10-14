@@ -55,7 +55,7 @@ public function equipment(Request $request, EquipmentRepository $equipmentReposi
         'Stage',
         'Visuals / LED Wall',
         'Special Effects',
-        'Others',
+        
     ];
 
     return $this->render('website/equipment.html.twig', [

@@ -32,6 +32,9 @@ class Booking
     #[ORM\Column(length: 255)]
     private ?string $Status = null;
 
+    #[ORM\OneToOne(mappedBy: 'Booking', cascade: ['persist', 'remove'])]
+    private ?Payment $Payment = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +108,28 @@ class Booking
     public function setStatus(string $Status): static
     {
         $this->Status = $Status;
+
+        return $this;
+    }
+
+    public function getPayment(): ?Payment
+    {
+        return $this->Payment;
+    }
+
+    public function setPayment(?Payment $Payment): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($Payment === null && $this->Payment !== null) {
+            $this->Payment->setBooking(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($Payment !== null && $Payment->getBooking() !== $this) {
+            $Payment->setBooking($this);
+        }
+
+        $this->Payment = $Payment;
 
         return $this;
     }

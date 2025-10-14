@@ -170,16 +170,22 @@ body {
     border: none;
     color: #2E1F1D;
     cursor: pointer;
-    font-size: 1rem;
     padding: 8px;
     vertical-align: middle;
-    transition: color 0.25s ease, transform 0.2s ease;
+    transition: color 0.25s ease, transform 0.25s ease;
 }
 
 .btn-icon:hover {
-    color: #A94442; /* subtle red accent on hover */
-    transform: scale(1.15);
+    color: #C04E3D; /* subtle warm red */
+    transform: scale(1.2) rotate(-8deg);
 }
+
+.actions-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 /* ===============================
    DASHBOARD PAGE STYLES
    =============================== */
@@ -327,4 +333,34 @@ body {
     .dashboard-stats-grid {
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     }
+}
+/* ======== STATUS BADGES ======== */
+.status-badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #2E1F1D;
+    background-color: #EDE6E1;
+}
+
+.status-pending {
+    background-color: #FFF3CD;
+    color: #856404;
+}
+
+.status-confirmed {
+    background-color: #D4EDDA;
+    color: #155724;
+}
+
+.status-cancelled {
+    background-color: #F8D7DA;
+    color: #721C24;
+}
+
+.status-completed {
+    background-color: #D1ECF1;
+    color: #0C5460;
 }

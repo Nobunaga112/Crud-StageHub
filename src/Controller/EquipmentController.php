@@ -55,9 +55,9 @@ final class EquipmentController extends AbstractController
 
         $latestBookings = [
             // Dummy data for latest bookings (will be replaced by actual Booking entity data later)
-            ['id' => 'SH001', 'customer' => 'Alice Smith', 'equipment' => 'Disco Lights (x2)', 'status' => 'Pending', 'startDate' => '2024-07-20', 'endDate' => '2024-07-22'],
-            ['id' => 'SH002', 'customer' => 'Bob Johnson', 'equipment' => 'Fog Machine', 'status' => 'Approved', 'startDate' => '2024-07-19', 'endDate' => '2024-07-20'],
-            ['id' => 'SH003', 'customer' => 'Charlie Brown', 'equipment' => 'Stage Truss', 'status' => 'Completed', 'startDate' => '2024-07-15', 'endDate' => '2024-07-17'],
+            ['id' => 'SH001', 'customer' => 'Franzu Haroldu V. Tahir', 'equipment' => 'Disco Lights (x2)', 'status' => 'Pending', 'startDate' => '2024-07-20', 'endDate' => '2024-07-22'],
+            ['id' => 'SH002', 'customer' => 'Osama Franz T. Jordan', 'equipment' => 'Fog Machine', 'status' => 'Approved', 'startDate' => '2024-07-19', 'endDate' => '2024-07-20'],
+            ['id' => 'SH003', 'customer' => 'Franz Lebron A. Ball', 'equipment' => 'Stage Truss', 'status' => 'Completed', 'startDate' => '2024-07-15', 'endDate' => '2024-07-17'],
         ];
 
         return $this->render('equipment/dashboard.html.twig', [

@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Payment Dashboard{% endblock %}
+
+{% block body %}
+    <h1 class="page-title">Payment Dashboard</h1>
+
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Amount</th>
+                    <th>Method</th>
+                    <th>Status</th>
+                    <th>Payment Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for payment in payments %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ payment.Amount }}</td>
+                        <td>{{ payment.Method }}</td>
+
+                        <td>
+                            {% if payment.Status == 'Paid' %}
+                                <span class="status-badge status-confirmed">Paid</span>
+                            {% elseif payment.Status == 'Pending' %}
+                                <span class="status-badge status-pending">Pending</span>
+                            {% elseif payment.Status == 'Failed' %}
+                                <span class="status-badge status-cancelled">Failed</span>
+                            {% else %}
+                                <span class="status-badge">{{ payment.Status }}</span>
+                            {% endif %}
+                        </td>
+
+                        <td>{{ payment.PaymentDate ? payment.PaymentDate|date('Y-m-d') : '' }}</td>
+                        <td class="actions-cell">
+                            <a href="{{ path('app_payment_show', {'id': payment.id}) }}" class="btn btn-show">Show</a>
+                            <a href="{{ path('app_payment_edit', {'id': payment.id}) }}" class="btn btn-edit">Edit</a>
+
+                            <form method="post" action="{{ path('app_payment_delete', {'id': payment.id}) }}" onsubmit="return confirm('Are you sure you want to delete this payment?');" class="delete-form">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ payment.id) }}">
+                                <button class="btn-icon" title="Delete Payment">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7L18.132 19.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.994-1.858L5 7m5 4v6m4-6v6M9 4h6a1 1 0 011 1v1H8V5a1 1 0 011-1z" />
+                                    </svg>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">No records found</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="action-bar">
+        <a href="{{ path('app_payment_new') }}" class="btn btn-create">Create new</a>
+    </div>
+{% endblock %}

@@ -13,15 +13,15 @@
         Equipment
     </a>
 
-    {# New Booking Link #}
+    {# Booking Link #}
     <a href="{{ path('app_booking_index') }}" 
        class="{{ app.request.attributes.get('_route') starts with 'app_booking' ? 'active' : '' }}">
         Booking
     </a>
 
-    {# Optional: Direct Add Equipment (can remain commented) #}
-    {# <a href="{{ path('app_equipment_new') }}" 
-       class="{{ app.request.attributes.get('_route') == 'app_equipment_new' ? 'active' : '' }}">
-        Add New Equipment
-    </a> #}
+    {# Payment Link #}
+    <a href="{{ path('app_payment_index') }}" 
+       class="{{ app.request.attributes.get('_route') starts with 'app_payment' ? 'active' : '' }}">
+        Payment
+    </a>
 </div>
