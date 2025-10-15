@@ -49,8 +49,7 @@ final class EquipmentController extends AbstractController
         $completedRentals = 480; // Assuming 'isAvailable' field in Equipment entity
         $rentalSales = 89000.00; // Placeholder for a monetary value
         
-
-        // Using real data for equipment count, as that entity/repository exists
+        
         
 
         $latestBookings = [
@@ -59,6 +58,8 @@ final class EquipmentController extends AbstractController
             ['id' => 'SH002', 'customer' => 'Osama Franz T. Jordan', 'equipment' => 'Fog Machine', 'status' => 'Approved', 'startDate' => '2024-07-19', 'endDate' => '2024-07-20'],
             ['id' => 'SH003', 'customer' => 'Franz Lebron A. Ball', 'equipment' => 'Stage Truss', 'status' => 'Completed', 'startDate' => '2024-07-15', 'endDate' => '2024-07-17'],
         ];
+         $equipmentList = $this->equipmentRepository->findAll();
+        // Using real data for equipment count, as that entity/repository exists
 
         return $this->render('equipment/dashboard.html.twig', [
             'total_users' => $totalUsers,
@@ -67,6 +68,7 @@ final class EquipmentController extends AbstractController
             'completed_rentals' => $completedRentals,
             'rental_sales' => $rentalSales,
             'latest_bookings' => $latestBookings,
+            'equipmentList' => $equipmentList,
             // ... pass any other dummy data needed for your dashboard design
         ]);
     }

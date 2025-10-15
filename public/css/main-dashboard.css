@@ -1,6 +1,8 @@
-/* main-dashboard.css */
+/* ============================
+   MAIN DASHBOARD STYLES
+   ============================ */
 
-/* Dashboard Layout Spacing */
+/* --- Layout --- */
 .main-content {
     padding: 2rem 3rem;
     margin-left: 270px;
@@ -14,7 +16,9 @@
     margin: 0 auto;
 }
 
-/* Stat Cards */
+/* ============================
+   STAT CARDS
+   ============================ */
 .dashboard-stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -28,6 +32,12 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     text-align: center;
     padding: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .stat-card h3 {
@@ -42,7 +52,9 @@
     color: #2b1d17;
 }
 
-/* Tables */
+/* ============================
+   DASHBOARD SECTIONS
+   ============================ */
 .dashboard-section {
     background: #fff;
     border-radius: 10px;
@@ -56,4 +68,70 @@
     padding-left: 0.75rem;
     margin-bottom: 1rem;
     color: #3e2a21;
+}
+
+/* ============================
+   TABLES
+   ============================ */
+.table-container {
+    overflow-x: auto;
+}
+
+#equipmentTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#equipmentTable th,
+#equipmentTable td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+}
+
+#equipmentTable thead {
+    background-color: #f3e9e1;
+    color: #3e2a21;
+    font-weight: bold;
+}
+
+#equipmentTable tbody tr:nth-child(even) {
+    background-color: #faf6f1;
+}
+
+.status {
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.status.available {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status.unavailable {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* ============================
+   DATATABLES OVERRIDES
+   ============================ */
+.dataTables_filter {
+    margin-bottom: 1rem;
+}
+
+.dataTables_filter input.search-input {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.dataTables_filter input.search-input:focus {
+    border-color: #b48b68;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(212, 183, 155, 0.3);
 }
