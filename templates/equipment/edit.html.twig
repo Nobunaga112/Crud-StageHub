@@ -40,13 +40,13 @@
   </div>
 
   <div>
-    {{ form_label(form.Availability, 'Status', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_label(form.Availability, 'Available', {'label_attr': {'class': 'form-label'}}) }}
     {{ form_widget(form.Availability, {'attr': {'class': 'form-select'}}) }}
     {{ form_errors(form.Availability) }}
   </div>
 
   <div class="price-field">
-    {{ form_label(form.Price, 'Price Per Day ($)', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_label(form.Price, 'Price Per Day (₱)', {'label_attr': {'class': 'form-label'}}) }}
     {{ form_widget(form.Price, {'attr': {'class': 'form-input'}}) }}
     {{ form_errors(form.Price) }}
   </div>

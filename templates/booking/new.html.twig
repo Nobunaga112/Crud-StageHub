@@ -3,7 +3,13 @@
 {% block title %}Book Equipment{% endblock %}
 
 {% block body %}
-    <h1>Book Equipment</h1>
+    <h1 class="page-title">Book Equipment</h1>
 
-    {{ include('booking/_form.html.twig', { button_label: 'Book Now' }) }}
+    <div class="table-container">
+        {{ include('booking/_form.html.twig', { button_label: 'Book Now' }) }}
+    </div>
+
+    <div class="action-bar">
+        <a href="{{ path('app_booking_index') }}" class="btn btn-show">Back to List</a>
+    </div>
 {% endblock %}

@@ -25,18 +25,10 @@
     <!-- Modal Body -->
     <div class="modal-body">
       
-      <!-- Equipment Image -->
-      <div class="equipment-image-container">
-        <img src="{{ asset('images/' ~ equipment.equipmentType|lower ~ '.jpg') }}" 
-             alt="{{ equipment.equipment }}" 
-             class="equipment-image"
-             onerror="this.src='{{ asset('images/default.jpg') }}'">
-      </div>
-
       <!-- Equipment Header Info -->
       <div class="equipment-info-header">
         <h3 class="equipment-name">{{ equipment.equipment }}</h3>
-        <p class="equipment-id">#{{ equipment.id }}</p>
+        <p class="equipment-id">Equipment #{{ equipmentDisplayNumber }}</p>
       </div>
 
       <!-- Equipment Details -->
@@ -58,7 +50,7 @@
 
           <div>
             <dt class="detail-term">Price Per Day</dt>
-            <dd class="detail-price">${{ equipment.price|number_format(2, '.', ',') }}</dd>
+            <dd class="detail-price">₱{{ equipment.price|number_format(2, '.', ',') }}</dd>
           </div>
         </dl>
       </div>
@@ -67,6 +59,9 @@
       <div class="modal-footer">
         <a href="{{ path('app_equipment_index') }}" class="modal-action-button">
           Close
+        </a>
+        <a href="{{ path('app_equipment_edit', {'id': equipment.id}) }}" class="modal-action-button">
+          Edit
         </a>
       </div>
 

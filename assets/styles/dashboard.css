@@ -364,3 +364,34 @@ body {
     background-color: #D1ECF1;
     color: #0C5460;
 }
+/* ======== STATUS BADGES (for User Management) ======== */
+.status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* You can also create specific classes instead of inline styles */
+.badge-admin {
+    background-color: #D4EDDA !important;
+    color: #155724 !important;
+}
+
+.badge-staff {
+    background-color: #D1ECF1 !important;
+    color: #0C5460 !important;
+}
+
+.badge-active {
+    background-color: #D4EDDA !important;
+    color: #155724 !important;
+}
+
+.badge-inactive {
+    background-color: #F8D7DA !important;
+    color: #721C24 !important;
+}

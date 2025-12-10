@@ -15,29 +15,31 @@ class PaymentRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Payment::class);
     }
-
-//    /**
-//     * @return Payment[] Returns an array of Payment objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Payment
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    
+    /**
+     * Get total revenue from completed/paid payments
+     */
+    public function getTotalRevenue(): float
+    {
+        $result = $this->createQueryBuilder('p')
+            ->select('SUM(p.Amount)')
+            ->where('p.Status IN (:statuses)')
+            ->setParameter('statuses', ['Completed', 'Paid'])
+            ->getQuery()
+            ->getSingleScalarResult();
+            
+        return $result ? (float) $result : 0.0;
+    }
+    
+    /**
+     * Get recent payments (for dashboard)
+     */
+    public function findRecent(int $limit = 5): array
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.id', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
 }

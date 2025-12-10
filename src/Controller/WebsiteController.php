@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class WebsiteController extends AbstractController
 {
-    #[Route('/', name: 'website_home', methods: ['GET'])]
+    #[Route('/web', name: 'website_home', methods: ['GET'])]
     public function home(): Response
     {
         return $this->render('website/home.html.twig');

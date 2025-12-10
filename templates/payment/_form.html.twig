@@ -1,4 +1,224 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{% extends 'base.html.twig' %}
+
+{% block title %}Create New Payment{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/equipment_edit.css') }}">
+{% endblock %}
+
+{% block body %}
+<!-- Modal Overlay -->
+<div class="modal-overlay">
+  <div class="modal-container">
+
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <h2 class="modal-title">Create New Payment</h2>
+      <button class="modal-close-button" id="close-modal">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="modal-body">
+      {{ form_start(form) }}
+      
+      <div class="form-fields-container">
+        <div>
+          {{ form_label(form.Amount, 'Amount (₱)', {'label_attr': {'class': 'form-label'}}) }}
+          {{ form_widget(form.Amount, {'attr': {'class': 'form-input', 'placeholder': '0.00'}}) }}
+          {{ form_errors(form.Amount) }}
+        </div>
+
+        <div>
+          {{ form_label(form.Method, 'Payment Method', {'label_attr': {'class': 'form-label'}}) }}
+          {{ form_widget(form.Method, {'attr': {'class': 'form-select'}}) }}
+          {{ form_errors(form.Method) }}
+        </div>
+
+        <div>
+          {{ form_label(form.Status, 'Status', {'label_attr': {'class': 'form-label'}}) }}
+          {{ form_widget(form.Status, {'attr': {'class': 'form-select'}}) }}
+          {{ form_errors(form.Status) }}
+        </div>
+
+        <div>
+          {{ form_label(form.Payment_Date, 'Payment Date', {'label_attr': {'class': 'form-label'}}) }}
+          {{ form_widget(form.Payment_Date, {'attr': {'class': 'form-input'}}) }}
+          {{ form_errors(form.Payment_Date) }}
+        </div>
+
+        <div class="status-field">
+          {{ form_label(form.Booking, 'Booking', {'label_attr': {'class': 'form-label'}}) }}
+          {{ form_widget(form.Booking, {'attr': {'class': 'form-select'}}) }}
+          {{ form_errors(form.Booking) }}
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <a href="{{ path('app_payment_index') }}" class="button button-cancel">Cancel</a>
+        <button type="submit" class="button button-save">Create Payment</button>
+      </div>
+
+      {{ form_end(form) }}
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Add extra margin for booking field */
+  .status-field {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Ensure modal footer has proper spacing */
+  .modal-footer {
+    margin-top: 1rem !important;
+  }
+  
+  /* Hide the currency symbol that MoneyType adds */
+  .form-input[name*="Amount"] {
+    padding-left: 0.875rem !important;
+  }
+  
+  /* Target the currency symbol span that Symfony adds */
+  .form-input[name*="Amount"] + span,
+  input[name*="Amount"] + span {
+    display: none !important;
+  }
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const modalOverlay = document.querySelector(".modal-overlay");
+  const closeButton = document.querySelector(".modal-close-button");
+  const cancelButton = document.querySelector(".button-cancel");
+  const bookingSelect = document.querySelector("select[name*='[Booking]']");
+  const amountInput = document.querySelector('input[name*="Amount"]');
+
+  // ✅ Smoothly fade in modal
+  requestAnimationFrame(() => {
+    modalOverlay.classList.add("active");
+  });
+
+  // ✅ Close when clicking close button
+  closeButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = "{{ path('app_payment_index') }}";
+  });
+
+  // ✅ Close when clicking outside modal
+  modalOverlay.addEventListener("click", (e) => {
+    if (e.target === modalOverlay) {
+      window.location.href = "{{ path('app_payment_index') }}";
+    }
+  });
+
+  // ✅ Remove the currency symbol that Symfony adds
+  setTimeout(() => {
+    if (amountInput) {
+      // Look for sibling spans that might contain the currency symbol
+      const parent = amountInput.parentElement;
+      if (parent) {
+        const spans = parent.querySelectorAll('span');
+        spans.forEach(span => {
+          if (span.textContent.includes('$') || span.textContent.includes('₱') || span.textContent.includes('PHP')) {
+            span.style.display = 'none';
+            span.remove();
+          }
+        });
+      }
+      
+      // Also check for previous sibling that might be the currency symbol
+      let prevSibling = amountInput.previousElementSibling;
+      while (prevSibling) {
+        if (prevSibling.textContent && 
+            (prevSibling.textContent.includes('$') || 
+             prevSibling.textContent.includes('₱') || 
+             prevSibling.textContent.includes('PHP'))) {
+          prevSibling.style.display = 'none';
+          prevSibling.remove();
+        }
+        prevSibling = prevSibling.previousElementSibling;
+      }
+      
+      // Remove currency symbol from the input value itself
+      let currentValue = amountInput.value;
+      if (currentValue.includes('$') || currentValue.includes('₱') || currentValue.includes('PHP')) {
+        amountInput.value = currentValue.replace(/[^\d.]/g, '');
+      }
+      
+      amountInput.addEventListener('input', function() {
+        // Ensure only numbers and decimal point
+        let value = this.value.replace(/[^\d.]/g, '');
+        
+        // Ensure only one decimal point
+        const decimalSplit = value.split('.');
+        if (decimalSplit.length > 2) {
+          value = decimalSplit[0] + '.' + decimalSplit.slice(1).join('');
+        }
+        
+        // Limit to 2 decimal places
+        if (decimalSplit.length === 2 && decimalSplit[1].length > 2) {
+          value = decimalSplit[0] + '.' + decimalSplit[1].substring(0, 2);
+        }
+        
+        this.value = value;
+      });
+    }
+  }, 100);
+
+  // ✅ Add placeholder for Status dropdown
+  const statusSelect = document.querySelector("select[name*='[Status]']");
+  if (statusSelect && !statusSelect.querySelector("option[value='']")) {
+    const placeholder = document.createElement("option");
+    placeholder.textContent = "Select Status";
+    placeholder.value = "";
+    placeholder.disabled = true;
+    placeholder.selected = !statusSelect.value;
+    statusSelect.insertBefore(placeholder, statusSelect.firstChild);
+  }
+
+  // ✅ Add placeholder for Method dropdown
+  const methodSelect = document.querySelector("select[name*='[Method]']");
+  if (methodSelect && !methodSelect.querySelector("option[value=']']")) {
+    const placeholder = document.createElement("option");
+    placeholder.textContent = "Select Payment Method";
+    placeholder.value = "";
+    placeholder.disabled = true;
+    placeholder.selected = !methodSelect.value;
+    methodSelect.insertBefore(placeholder, methodSelect.firstChild);
+  }
+
+  // ✅ Add placeholder for Payment Date field
+  const paymentDateInput = document.querySelector('input[name*="Payment_Date"]');
+  if (paymentDateInput && !paymentDateInput.value) {
+    // Set today's date as default if empty
+    const today = new Date().toISOString().split('T')[0];
+    paymentDateInput.value = today;
+  }
+
+  // ✅ Update booking labels to use peso sign instead of dollar
+  if (bookingSelect) {
+    const options = bookingSelect.querySelectorAll('option');
+    options.forEach(option => {
+      if (option.textContent.includes('($')) {
+        option.textContent = option.textContent.replace('($', '(₱');
+      }
+    });
+    
+    // Check if there's already a placeholder
+    if (!bookingSelect.querySelector("option[value='']")) {
+      const placeholder = document.createElement("option");
+      placeholder.textContent = "Select Booking";
+      placeholder.value = "";
+      placeholder.disabled = true;
+      bookingSelect.insertBefore(placeholder, bookingSelect.firstChild);
+    }
+  }
+});
+</script>
+{% endblock %}

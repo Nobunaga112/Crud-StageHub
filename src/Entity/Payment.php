@@ -29,6 +29,12 @@ class Payment
     #[ORM\OneToOne(inversedBy: 'Payment', cascade: ['persist', 'remove'])]
     private ?Booking $Booking = null;
 
+    // ======= ADD THIS SECTION =======
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(nullable: true)]  // IMPORTANT: Start with nullable: true
+    private ?User $createdBy = null;
+    // ======= END OF ADDED SECTION =======
+
     public function getId(): ?int
     {
         return $this->id;
@@ -93,4 +99,17 @@ class Payment
 
         return $this;
     }
+
+    // ======= ADD THESE TWO METHODS AT THE END =======
+    public function getCreatedBy(): ?User
+    {
+        return $this->createdBy;
+    }
+
+    public function setCreatedBy(?User $createdBy): static
+    {
+        $this->createdBy = $createdBy;
+        return $this;
+    }
+    // ======= END OF ADDED METHODS =======
 }

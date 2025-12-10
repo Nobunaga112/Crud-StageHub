@@ -2,12 +2,210 @@
 
 {% block title %}Edit Payment{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/equipment_edit.css') }}">
+{% endblock %}
+
 {% block body %}
-    <h1>Edit Payment</h1>
+<!-- Modal Overlay -->
+<div class="modal-overlay">
+  <div class="modal-container">
 
-    {{ include('payment/_form.html.twig', {'button_label': 'Update'}) }}
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <h2 class="modal-title">Edit Payment</h2>
+      <button class="modal-close-button" id="close-modal">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
 
-    <a href="{{ path('app_payment_index') }}">back to list</a>
+    <!-- Modal Body -->
+    <div class="modal-body">
+      {{ form_start(form) }}
+      
+      <div class="form-fields-container">
+        <div>
+          {{ form_label(form.Amount, 'Amount (₱)', {'label_attr': {'class': 'form-label'}}) }}  {# Changed to peso sign #}
+          {{ form_widget(form.Amount, {'attr': {'class': 'form-input', 'placeholder': '0.00'}}) }}
+          {{ form_errors(form.Amount) }}
+        </div>
 
-    {{ include('payment/_delete_form.html.twig') }}
+        <div>
+          {{ form_label(form.Method, 'Payment Method', {'label_attr': {'class': 'form-label'}}) }}
+          {{ form_widget(form.Method, {'attr': {'class': 'form-select'}}) }}
+          {{ form_errors(form.Method) }}
+        </div>
+
+        <div>
+          {{ form_label(form.Status, 'Status', {'label_attr': {'class': 'form-label'}}) }}
+          {{ form_widget(form.Status, {'attr': {'class': 'form-select'}}) }}
+          {{ form_errors(form.Status) }}
+        </div>
+
+        <div>
+          {{ form_label(form.Payment_Date, 'Payment Date', {'label_attr': {'class': 'form-label'}}) }}
+          {{ form_widget(form.Payment_Date, {'attr': {'class': 'form-input'}}) }}
+          {{ form_errors(form.Payment_Date) }}
+        </div>
+
+        <div class="status-field">
+          {{ form_label(form.Booking, 'Booking', {'label_attr': {'class': 'form-label'}}) }}
+          {{ form_widget(form.Booking, {'attr': {'class': 'form-select'}}) }}
+          {{ form_errors(form.Booking) }}
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <a href="{{ path('app_payment_index') }}" class="button button-cancel">Cancel</a>
+        <button type="submit" class="button button-save">Update Payment</button>
+      </div>
+
+      {{ form_end(form) }}
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Add extra margin for booking field */
+  .status-field {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Ensure modal footer has proper spacing */
+  .modal-footer {
+    margin-top: 1rem !important;
+  }
+  
+  /* Remove dollar sign from MoneyType field */
+  .form-input[name*="Amount"] {
+    padding-left: 0.875rem !important; /* Remove space for currency symbol */
+  }
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const modalOverlay = document.querySelector(".modal-overlay");
+  const closeButton = document.querySelector(".modal-close-button");
+  const cancelButton = document.querySelector(".button-cancel");
+
+  // ✅ Smoothly fade in modal
+  requestAnimationFrame(() => {
+    modalOverlay.classList.add("active");
+  });
+
+  // ✅ Close when clicking close button
+  closeButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = "{{ path('app_payment_index') }}";
+  });
+
+  // ✅ Close when clicking outside modal
+  modalOverlay.addEventListener("click", (e) => {
+    if (e.target === modalOverlay) {
+      window.location.href = "{{ path('app_payment_index') }}";
+    }
+  });
+
+  // ✅ Remove dollar sign prefix from amount input
+  const amountInput = document.querySelector('input[name*="Amount"]');
+  if (amountInput) {
+    // Remove any existing currency symbols
+    let currentValue = amountInput.value;
+    if (currentValue.includes('$') || currentValue.includes('₱')) {
+      amountInput.value = currentValue.replace(/[^\d.]/g, '');
+    }
+    
+    // Remove currency symbol from placeholder if exists
+    if (amountInput.placeholder.includes('$') || amountInput.placeholder.includes('₱')) {
+      amountInput.placeholder = amountInput.placeholder.replace(/[$₱]/g, '');
+    }
+    
+    amountInput.addEventListener('input', function() {
+      // Ensure only numbers and decimal point
+      let value = this.value.replace(/[^\d.]/g, '');
+      
+      // Ensure only one decimal point
+      const decimalSplit = value.split('.');
+      if (decimalSplit.length > 2) {
+        value = decimalSplit[0] + '.' + decimalSplit.slice(1).join('');
+      }
+      
+      // Limit to 2 decimal places
+      if (decimalSplit.length === 2 && decimalSplit[1].length > 2) {
+        value = decimalSplit[0] + '.' + decimalSplit[1].substring(0, 2);
+      }
+      
+      this.value = value;
+    });
+    
+    // Format on blur to show peso sign temporarily (optional)
+    amountInput.addEventListener('blur', function() {
+      if (this.value && !isNaN(parseFloat(this.value))) {
+        const formatted = parseFloat(this.value).toFixed(2);
+        // You can show peso sign on blur if you want
+        // this.value = '₱' + formatted;
+        this.value = formatted;
+      }
+    });
+    
+    // Remove peso sign on focus
+    amountInput.addEventListener('focus', function() {
+      this.value = this.value.replace('₱', '');
+    });
+  }
+
+  // ✅ Add placeholder for Status dropdown
+  const statusSelect = document.querySelector("select[name*='[Status]']");
+  if (statusSelect && !statusSelect.querySelector("option[value='']")) {
+    const placeholder = document.createElement("option");
+    placeholder.textContent = "Select Status";
+    placeholder.value = "";
+    placeholder.disabled = true;
+    placeholder.selected = !statusSelect.value;
+    statusSelect.insertBefore(placeholder, statusSelect.firstChild);
+  }
+
+  // ✅ Add placeholder for Method dropdown
+  const methodSelect = document.querySelector("select[name*='[Method]']");
+  if (methodSelect && !methodSelect.querySelector("option[value=']']")) {
+    const placeholder = document.createElement("option");
+    placeholder.textContent = "Select Payment Method";
+    placeholder.value = "";
+    placeholder.disabled = true;
+    placeholder.selected = !methodSelect.value;
+    methodSelect.insertBefore(placeholder, methodSelect.firstChild);
+  }
+
+  // ✅ Add placeholder for Payment Date field
+  const paymentDateInput = document.querySelector('input[name*="Payment_Date"]');
+  if (paymentDateInput && !paymentDateInput.value) {
+    // Set today's date as default if empty
+    const today = new Date().toISOString().split('T')[0];
+    paymentDateInput.value = today;
+  }
+
+  // ✅ Update booking labels to use peso sign instead of dollar
+  const bookingSelect = document.querySelector("select[name*='[Booking]']");
+  if (bookingSelect) {
+    const options = bookingSelect.querySelectorAll('option');
+    options.forEach(option => {
+      if (option.textContent.includes('($')) {
+        option.textContent = option.textContent.replace('($', '(₱');
+      }
+    });
+    
+    // Check if there's already a placeholder
+    if (!bookingSelect.querySelector("option[value='']")) {
+      const placeholder = document.createElement("option");
+      placeholder.textContent = "Select Booking";
+      placeholder.value = "";
+      placeholder.disabled = true;
+      bookingSelect.insertBefore(placeholder, bookingSelect.firstChild);
+    }
+  }
+});
+</script>
 {% endblock %}
