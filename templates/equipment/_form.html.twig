@@ -1,0 +1,61 @@
+{{ form_start(form) }}
+<div class="form-fields-container">
+
+  <div>
+    {{ form_label(form.Equipment_Type, 'Category', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.Equipment_Type, {'attr': {'class': 'form-select'}}) }}
+    {{ form_errors(form.Equipment_Type) }}
+  </div>
+
+  <div>
+    {{ form_label(form.Equipment, 'Name', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.Equipment, {'attr': {'class': 'form-input'}}) }}
+    {{ form_errors(form.Equipment) }}
+  </div>
+
+  <div>
+    {{ form_label(form.Price, 'Price Per Day (₱)', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.Price, {'attr': {'class': 'form-input'}}) }}
+    {{ form_errors(form.Price) }}
+  </div>
+
+  <div>
+    {{ form_label(form.Availability, 'Available', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.Availability, {'attr': {'class': 'form-select'}}) }}
+    {{ form_errors(form.Availability) }}
+  </div>
+
+</div>
+
+<div class="modal-footer">
+  <a href="{{ path('app_equipment_index') }}" class="button button-cancel">Cancel</a>
+  <button type="submit" class="button button-save">{{ button_label|default('Add Equipment') }}</button>
+</div>
+
+{{ form_end(form) }}
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // ✅ Add placeholder for Equipment Type
+  const equipTypeSelect = document.querySelector("select[name$='[Equipment_Type]']");
+  if (equipTypeSelect && !equipTypeSelect.querySelector("option[value='']")) {
+    const placeholder = document.createElement("option");
+    placeholder.textContent = "Select Equipment Type";
+    placeholder.value = "";
+    placeholder.disabled = true;
+    placeholder.selected = !equipTypeSelect.value;
+    equipTypeSelect.insertBefore(placeholder, equipTypeSelect.firstChild);
+  }
+
+  // ✅ Add placeholder for Availability
+  const availabilitySelect = document.querySelector("select[name$='[Availability]']");
+  if (availabilitySelect && !availabilitySelect.querySelector("option[value='']")) {
+    const placeholder = document.createElement("option");
+    placeholder.textContent = "Select Availability";
+    placeholder.value = "";
+    placeholder.disabled = true;
+    placeholder.selected = !availabilitySelect.value;
+    availabilitySelect.insertBefore(placeholder, availabilitySelect.firstChild);
+  }
+});
+</script>

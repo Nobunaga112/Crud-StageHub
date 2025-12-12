@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Payment Details{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/show-equipment.css') }}">
+{% endblock %}
+
+{% block body %}
+<!-- Modal Overlay -->
+<div class="modal-overlay">
+  <div class="modal-container">
+
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <h2 class="modal-title">Payment Details</h2>
+      <button class="modal-close-button" id="close-modal">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="modal-body">
+      
+      <!-- Payment Header Info -->
+      <div class="equipment-info-header">
+        <h3 class="equipment-name">Payment #{{ paymentDisplayNumber }}</h3>
+      </div>
+
+      <!-- Payment Details -->
+      <div class="details-section">
+        <dl class="details-grid">
+          <div>
+            <dt class="detail-term">Amount</dt>
+            <dd class="detail-price">₱{{ payment.Amount|number_format(2, '.', ',') }}</dd>
+          </div>
+
+          <div>
+            <dt class="detail-term">Payment Method</dt>
+            <dd class="detail-description">{{ payment.Method }}</dd>
+          </div>
+
+          <div>
+            <dt class="detail-term">Payment Date</dt>
+            <dd class="detail-description">{{ payment.PaymentDate ? payment.PaymentDate|date('Y-m-d') : '' }}</dd>
+          </div>
+
+          <div>
+            <dt class="detail-term">Status</dt>
+            <dd>
+              {% if payment.Status == 'Paid' or payment.Status == 'Completed' %}
+                <span class="status-badge status-confirmed">{{ payment.Status }}</span>
+              {% elseif payment.Status == 'Pending' %}
+                <span class="status-badge status-pending">{{ payment.Status }}</span>
+              {% elseif payment.Status == 'Failed' %}
+                <span class="status-badge status-cancelled">{{ payment.Status }}</span>
+              {% else %}
+                <span class="status-badge">{{ payment.Status }}</span>
+              {% endif %}
+            </dd>
+          </div>
+
+          <div>
+            <dt class="detail-term">Booking</dt>
+            <dd class="detail-description">
+              {% if payment.Booking %}
+                <strong>#{{ bookingDisplayNumber }}</strong>: {{ payment.Booking.CustomerName }}
+                <br>
+                <small class="text-muted">
+                  {% if payment.Booking.Equipment %}
+                    {{ payment.Booking.Equipment.equipmentType }}: {{ payment.Booking.Equipment.equipment }}
+                  {% else %}
+                    No Equipment
+                  {% endif %}
+                  ({{ payment.Booking.Status }})
+                </small>
+              {% else %}
+                <span class="text-muted">No booking</span>
+              {% endif %}
+            </dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <a href="{{ path('app_payment_index') }}" class="modal-action-button">
+          Close
+        </a>
+        <a href="{{ path('app_payment_edit', {'id': payment.id}) }}" class="modal-action-button">
+          Edit
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const modalOverlay = document.querySelector(".modal-overlay");
+  const closeButton = document.querySelector(".modal-close-button");
+
+  // ✅ Smoothly fade in modal
+  requestAnimationFrame(() => {
+    modalOverlay.classList.add("active");
+  });
+
+  // ✅ Instantly close when clicking close button
+  closeButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = "{{ path('app_payment_index') }}";
+  });
+});
+</script>
+{% endblock %}

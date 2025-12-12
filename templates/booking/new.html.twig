@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book Equipment{% endblock %}
+
+{% block body %}
+    <h1 class="page-title">Book Equipment</h1>
+
+    <div class="table-container">
+        {{ include('booking/_form.html.twig', { button_label: 'Book Now' }) }}
+    </div>
+
+    <div class="action-bar">
+        <a href="{{ path('app_booking_index') }}" class="btn btn-show">Back to List</a>
+    </div>
+{% endblock %}

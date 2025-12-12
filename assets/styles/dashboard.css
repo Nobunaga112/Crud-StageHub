@@ -1,0 +1,397 @@
+/* ===============================
+   STAGEHUB DASHBOARD THEME
+   Elegant Beige-Gold & Espresso
+   =============================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #F5F0EB;
+    color: #2E1F1D;
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ======== SIDEBAR ======== */
+.sidebar {
+    width: 240px;
+    background-color: #2E1F1D;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.2);
+}
+
+.sidebar h2 {
+    color: #D5BDAF;
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.sidebar a {
+    color: #E8DED8;
+    text-decoration: none;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.sidebar a:hover {
+    background-color: #D5BDAF;
+    color: #2E1F1D;
+}
+
+/* ======== MAIN CONTENT ======== */
+.main-content {
+    margin-left: 240px;
+    padding: 3rem;
+    width: calc(100% - 240px);
+}
+
+.page-title {
+    font-size: 2rem;
+    color: #2E1F1D;
+    margin-bottom: 1.8rem;
+    border-bottom: 3px solid #D5BDAF;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* ======== TABLE ======== */
+.table-container {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid #E5DCD5;
+}
+
+.table th {
+    color: #2E1F1D;
+    font-weight: 600;
+    background-color: #F5F0EB;
+}
+
+.table tr:hover {
+    background-color: #FFF7F0;
+}
+
+/* ======== BUTTONS ======== */
+.btn {
+    display: inline-block;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-show {
+    background-color: #D5BDAF;
+    color: #2E1F1D;
+}
+
+.btn-show:hover {
+    background-color: #C7A996;
+}
+
+.btn-edit {
+    background-color: #2E1F1D;
+    color: #FFFFFF;
+}
+
+.btn-edit:hover {
+    background-color: #4A302D;
+}
+
+.btn-create {
+    background-color: #D5BDAF;
+    color: #2E1F1D;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.btn-create:hover {
+    background-color: #C7A996;
+    color: #1A0F0D;
+}
+
+.action-bar {
+    margin-top: 30px;
+    text-align: right;
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 768px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 1.5rem;
+    }
+}
+/* ======== DELETE ICON (non-intrusive, matches dashboard theme) ======== */
+.delete-form {
+    display: inline-block;
+    margin: 0;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    color: #2E1F1D;
+    cursor: pointer;
+    padding: 8px;
+    vertical-align: middle;
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.btn-icon:hover {
+    color: #C04E3D; /* subtle warm red */
+    transform: scale(1.2) rotate(-8deg);
+}
+
+.actions-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ===============================
+   DASHBOARD PAGE STYLES
+   =============================== */
+
+.main-content {
+    padding: 2rem 3rem;
+    background-color: #FAF5EF;
+    min-height: 100vh;
+}
+
+.main-content h1 {
+    font-size: 1.8rem;
+    color: #2E1F1D;
+    font-family: "Rubik One", sans-serif;
+    margin-bottom: 2rem;
+}
+
+/* ===== STATS GRID ===== */
+.dashboard-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.25s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.stat-card h3 {
+    font-size: 1rem;
+    color: #8b6b61;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+}
+
+.stat-card p {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2E1F1D;
+    margin: 0;
+}
+
+/* ===== DASHBOARD SECTIONS ===== */
+.dashboard-section {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+}
+
+.dashboard-section h2 {
+    color: #2E1F1D;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid #D5BDAF;
+    padding-left: 10px;
+}
+
+/* ===== TABLE ===== */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.dashboard-section table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.dashboard-section th,
+.dashboard-section td {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid #F0E5DE;
+}
+
+.dashboard-section th {
+    background-color: #F8F5F2;
+    color: #2E1F1D;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.dashboard-section td {
+    color: #3b2a28;
+    font-size: 0.9rem;
+}
+
+.dashboard-section tr:hover {
+    background-color: #FFF8F4;
+}
+
+/* ===== LINKS SECTION ===== */
+.dashboard-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dashboard-section li {
+    background-color: #F8F5F2;
+    border-radius: 8px;
+    margin-bottom: 0.6rem;
+    transition: background 0.25s ease;
+}
+
+.dashboard-section li:hover {
+    background-color: #D5BDAF;
+}
+
+.dashboard-section a {
+    display: block;
+    padding: 0.9rem 1.2rem;
+    color: #2E1F1D;
+    font-weight: 500;
+    text-decoration: none;
+    position: relative;
+}
+
+.dashboard-section a::after {
+    content: "›";
+    position: absolute;
+    right: 1rem;
+    color: #2E1F1D;
+    font-size: 1.1rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+    .main-content {
+        padding: 2rem 1.2rem;
+    }
+
+    .dashboard-stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+}
+/* ======== STATUS BADGES ======== */
+.status-badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #2E1F1D;
+    background-color: #EDE6E1;
+}
+
+.status-pending {
+    background-color: #FFF3CD;
+    color: #856404;
+}
+
+.status-confirmed {
+    background-color: #D4EDDA;
+    color: #155724;
+}
+
+.status-cancelled {
+    background-color: #F8D7DA;
+    color: #721C24;
+}
+
+.status-completed {
+    background-color: #D1ECF1;
+    color: #0C5460;
+}
+/* ======== STATUS BADGES (for User Management) ======== */
+.status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* You can also create specific classes instead of inline styles */
+.badge-admin {
+    background-color: #D4EDDA !important;
+    color: #155724 !important;
+}
+
+.badge-staff {
+    background-color: #D1ECF1 !important;
+    color: #0C5460 !important;
+}
+
+.badge-active {
+    background-color: #D4EDDA !important;
+    color: #155724 !important;
+}
+
+.badge-inactive {
+    background-color: #F8D7DA !important;
+    color: #721C24 !important;
+}

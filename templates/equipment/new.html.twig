@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add New Equipment{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/equipment_edit.css') }}">
+{% endblock %}
+
+{% block body %}
+<!-- Modal Overlay -->
+<div class="modal-overlay add-equipment-modal">
+  <div class="modal-container">
+
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <h2 class="modal-title">Add New Equipment</h2>
+      <button class="modal-close-button" id="close-modal">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="modal-body">
+      {{ include('equipment/_form.html.twig', { button_label: 'Add Equipment' }) }}
+    </div>
+
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const modalOverlay = document.querySelector(".modal-overlay");
+  const closeButton = document.querySelector(".modal-close-button");
+
+  // ✅ Smooth fade-in animation
+  requestAnimationFrame(() => {
+    modalOverlay.classList.add("active");
+  });
+
+  // ✅ Close when clicking close button
+  closeButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = "{{ path('app_equipment_index') }}";
+  });
+
+  // ✅ Close when clicking outside modal
+  modalOverlay.addEventListener("click", (e) => {
+    if (e.target === modalOverlay) {
+      window.location.href = "{{ path('app_equipment_index') }}";
+    }
+  });
+});
+</script>
+{% endblock %}

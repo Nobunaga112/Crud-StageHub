@@ -1,0 +1,243 @@
+/* ============================
+   COMPACT DASHBOARD STYLES
+   ============================ */
+
+/* --- Layout --- */
+.main-content {
+    padding: 1.5rem 2rem;
+    margin-left: 250px; /* Reduced from 270px */
+    margin-top: 0; /* Remove top margin */
+    background-color: #faf6f1;
+    min-height: 100vh;
+    transition: margin-left 0.3s;
+}
+
+/* Reduce left margin for smaller screens */
+@media (max-width: 1200px) {
+    .main-content {
+        margin-left: 220px;
+        padding: 1rem 1.5rem;
+    }
+}
+
+/* --- Dashboard Title --- */
+.dashboard-title {
+    color: #2b1d17;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #d8b79b;
+}
+
+/* ============================
+   STAT CARDS - More Compact
+   ============================ */
+.dashboard-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem; /* Reduced from 1.5rem */
+    margin-bottom: 1.5rem;
+}
+
+.stat-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    padding: 1rem; /* Reduced from 1.5rem */
+    transition: all 0.2s ease;
+    border: 1px solid #eee;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.stat-card h3 {
+    color: #6a4e3b;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.stat-card p {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #2b1d17;
+    margin: 0;
+}
+
+/* ============================
+   DASHBOARD SECTIONS - More Compact
+   ============================ */
+.dashboard-section {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    padding: 1.25rem; /* Reduced from 1.5rem */
+    margin-bottom: 1.5rem;
+    border: 1px solid #eee;
+}
+
+.dashboard-section h2 {
+    color: #3e2a21;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.section-subtitle {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+/* ============================
+   TABLES - More Compact
+   ============================ */
+.table-container {
+    overflow-x: auto;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+}
+
+#equipmentTable {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 0;
+}
+
+#equipmentTable thead th {
+    background-color: #f5f0eb;
+    color: #3e2a21;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 2px solid #d8b79b;
+}
+
+#equipmentTable tbody td {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #eee;
+}
+
+#equipmentTable tbody tr:hover {
+    background-color: #faf6f1;
+}
+
+#equipmentTable tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.status {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-block;
+    min-width: 80px;
+    text-align: center;
+}
+
+.status.available {
+    background-color: #e7f7e7;
+    color: #2e7d32;
+}
+
+.status.unavailable {
+    background-color: #ffeaea;
+    color: #c62828;
+}
+
+/* ============================
+   DATATABLES OVERRIDES - Compact
+   ============================ */
+.dataTables_wrapper {
+    margin-top: 1rem;
+}
+
+.dataTables_filter {
+    margin-bottom: 0.75rem;
+}
+
+.dataTables_filter input.search-input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.9rem;
+    width: 250px;
+}
+
+.dataTables_length select {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+}
+
+.dataTables_paginate .paginate_button {
+    padding: 0.25rem 0.5rem !important;
+    margin: 0 0.1rem !important;
+    border: 1px solid #ddd !important;
+    border-radius: 3px !important;
+}
+
+/* ============================
+   LATEST BOOKINGS TABLE - Compact
+   ============================ */
+.table-responsive {
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background-color: #f5f0eb;
+    color: #3e2a21;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 2px solid #d8b79b;
+}
+
+.table tbody td {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    vertical-align: middle;
+    border-bottom: 1px solid #eee;
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.badge {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+    font-weight: 500;
+}
+
+/* ============================
+   UTILITY CLASSES
+   ============================ */
+.text-center {
+    text-align: center;
+}
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+.fw-semibold {
+    font-weight: 600;
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
+}

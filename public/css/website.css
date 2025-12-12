@@ -1,0 +1,394 @@
+/* ===============================
+   StageHub Frontend Theme
+   Beige–Gold & Espresso
+   =============================== */
+body {
+  background-color: #F5F0EB;
+  color: #2E1F1D;
+  font-family: 'Inter', sans-serif;
+  padding-top: 55px;
+  margin: 0;
+  padding-bottom: 0;
+}
+
+/* Ensure no gaps between sections */
+main, #content, .content-wrapper {
+  margin: 0;
+  padding: 0;
+}
+
+/* ===============================
+   NAVBAR FIX + SCROLL FIX
+   =============================== */
+.stagehub-navbar {
+  background-color: #7F5530 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1050;
+}
+
+.stagehub-navbar .nav-link {
+  color: #dcb792 !important;
+  font-weight: 500;
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
+
+.stagehub-navbar .nav-link:hover {
+  color: #cc5501 !important;
+}
+
+.stagehub-navbar.scrolled {
+  background-color: rgba(127, 85, 48, 0.95) !important;
+  transition: background-color 0.4s ease;
+}
+
+h1, h2, h3, .navbar-brand {
+  font-family: 'Rubik One', sans-serif;
+}
+
+.btn-dark {
+  background-color: #7F5530;
+  border: none;
+}
+
+.btn-dark:hover {
+  background-color: #5a3d22;
+}
+
+footer {
+  font-size: 0.9rem;
+  margin: 0 !important;
+  margin-top: 0 !important;
+  padding-top: 0;
+  background-color: #7F5530;
+  display: block;
+}
+
+/* Remove any default section spacing */
+section {
+  margin: 0;
+  padding: 0;
+}
+
+section .container {
+  margin: 0 auto;
+}
+
+/* ===============================
+   HOME PAGE - HERO ONLY
+   =============================== */
+.home-page {
+  background: url('../images/background.jpg') center center / cover no-repeat fixed;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 0;
+}
+
+.home-page > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===============================
+   HERO SECTION
+   =============================== */
+.hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-content h1 {
+  font-family: 'Rubik One', sans-serif;
+  font-size: 3.5rem;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.hero-content p {
+  color: #f1f1f1;
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 2rem auto;
+  line-height: 1.6;
+}
+
+.hero-section .btn {
+  background-color: #cc5501 !important;
+  color: #fff !important;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 36px;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.hero-section .btn:hover {
+  background-color: #a54400 !important;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(204, 85, 1, 0.4);
+}
+
+/* ===============================
+   FEATURED & CATEGORIES SECTIONS
+   =============================== */
+.featured-section {
+  background-color: #dcb792;
+  padding: 80px 0 60px 0;
+  width: 100%;
+  position: relative;
+  margin: 0;
+}
+
+.categories-section {
+  background-color: #dcb792;
+  padding: 60px 0 0 0;
+  width: 100%;
+  position: relative;
+  margin: 0;
+}
+
+.categories-section .container {
+  padding-bottom: 80px;
+}
+
+/* Ensure beige background extends to footer */
+.categories-section::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background-color: #dcb792;
+  margin: 0;
+}
+
+/* Remove Bootstrap default margins */
+.featured-section .row,
+.categories-section .row {
+  margin-bottom: 0;
+}
+
+.section-title {
+  text-align: center;
+  font-family: 'Rubik One', sans-serif;
+  font-size: 2rem;
+  color: #2E1F1D !important;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ===============================
+   EQUIPMENT CARDS
+   =============================== */
+.equipment-card {
+  background-color: #fff !important;
+  border-radius: 12px !important;
+  border: none !important;
+  overflow: hidden;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1) !important;
+  height: 100% !important;
+}
+
+.equipment-card:hover {
+  background-color: #cc5501 !important;
+  color: #fff !important;
+  transform: translateY(-6px) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+}
+
+.equipment-card:hover h5,
+.equipment-card:hover h6,
+.equipment-card:hover p {
+  color: #fff !important;
+}
+
+.equipment-card img {
+  height: 180px !important;
+  width: 100% !important;
+  object-fit: cover !important;
+}
+
+.equipment-card h5 {
+  font-weight: 700;
+  color: #2E1F1D;
+  font-family: 'Inter', sans-serif;
+}
+
+.equipment-card p {
+  color: #4a3b36;
+  font-size: 0.95rem;
+}
+
+.equipment-type {
+  color: #7f5530 !important;
+  font-size: 0.9rem !important;
+  margin-bottom: 0.5rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px;
+}
+
+/* ===============================
+   BUTTONS
+   =============================== */
+.btn-gold {
+  background-color: #C7A252;
+  color: #000;
+  font-weight: 600;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-gold:hover {
+  background-color: #a8873d;
+  color: #fff;
+}
+
+.btn-teal {
+  background-color: #cc5501;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-teal:hover {
+  background-color: #a54400;
+  transform: translateY(-2px);
+}
+
+.btn-outline-secondary {
+  border-color: #7F5530;
+  color: #7F5530;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #7F5530;
+  color: #fff;
+}
+
+.navbar .btn:hover {
+  opacity: 0.85;
+}
+
+.navbar .dropdown-menu .dropdown-item:hover {
+  background-color: #cc5501;
+  color: #fff !important;
+}
+
+.navbar .nav-link {
+  font-weight: 500;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+/* ===============================
+   EQUIPMENT PAGE (if separate)
+   =============================== */
+body.website_equipment {
+  background-color: #dcb792 !important;
+}
+
+.equipment-page {
+  background-color: #dcb792;
+  min-height: calc(100vh - 80px);
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
+
+/* ===============================
+   CATEGORY CARDS
+   =============================== */
+.hover-card {
+  transition: all 0.3s ease-in-out;
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.category-card {
+  transition: all 0.3s ease-in-out;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.category-card img {
+  height: 120px;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+/* ===============================
+   SMOOTH SCROLLING
+   =============================== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===============================
+   RESPONSIVE DESIGN
+   =============================== */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-content p {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .hero-section .btn {
+    padding: 12px 28px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-content p {
+    font-size: 0.95rem;
+  }
+}

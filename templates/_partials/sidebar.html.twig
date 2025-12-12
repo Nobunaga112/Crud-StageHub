@@ -1,0 +1,108 @@
+<div class="sidebar">
+    <h2>StageHub</h2>
+
+    {# Dashboard Link (Admin only) #}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('app_admin_dashboard') }}" 
+           class="{{ app.request.attributes.get('_route') == 'app_admin_dashboard' ? 'active' : '' }}">
+            <i class="fas fa-tachometer-alt"></i> Dashboard
+        </a>
+    {% endif %}
+
+    {# Equipment Link (Admin only) #}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('app_equipment_index') }}" 
+           class="{{ app.request.attributes.get('_route') starts with 'app_equipment' ? 'active' : '' }}">
+            <i class="fas fa-box"></i> Equipment
+        </a>
+    {% endif %}
+
+    {# Booking Link (for both admin and staff) #}
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_STAFF') %}
+        <a href="{{ path('app_booking_index') }}" 
+           class="{{ app.request.attributes.get('_route') starts with 'app_booking' ? 'active' : '' }}">
+            <i class="fas fa-calendar-check"></i> Booking
+        </a>
+    {% endif %}
+
+    {# Payment Link (for both admin and staff) #}
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_STAFF') %}
+        <a href="{{ path('app_payment_index') }}" 
+           class="{{ app.request.attributes.get('_route') starts with 'app_payment' ? 'active' : '' }}">
+            <i class="fas fa-credit-card"></i> Payment
+        </a>
+    {% endif %}
+
+    {# User Management Link (Admin only) #}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('user_index') }}" 
+           class="{{ app.request.attributes.get('_route') starts with 'user_' ? 'active' : '' }}">
+            <i class="fas fa-users"></i> User
+        </a>
+    {% endif %}
+
+    {# ========== ADD THIS SECTION ========== #}
+    {# Activity Logs Link (Admin only) #}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('app_activity_logs') }}" 
+           class="{{ app.request.attributes.get('_route') starts with 'app_activity_logs' ? 'active' : '' }}">
+            <i class="fas fa-history"></i> Activity Logs
+        </a>
+    {% endif %}
+    {# ========== END OF ADDED SECTION ========== #}
+</div>
+
+<style>
+    .sidebar {
+        width: 240px;
+        background-color: #2E1F1D;
+        color: white;
+        padding: 1.5rem 1rem;
+        min-height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 1000;
+    }
+    
+    .sidebar h2 {
+        color: #D5BDAF;
+        font-size: 1.4rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        font-family: 'Arial', sans-serif;
+        font-weight: bold;
+    }
+    
+    .sidebar a {
+        color: #E8DED8;
+        text-decoration: none;
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease;
+        font-size: 0.95rem;
+    }
+    
+    .sidebar a:hover {
+        background-color: #D5BDAF;
+        color: #2E1F1D;
+        transform: translateX(5px);
+    }
+    
+    .sidebar a.active {
+        background-color: #D5BDAF;
+        color: #2E1F1D;
+        font-weight: bold;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    .sidebar a i {
+        width: 20px;
+        margin-right: 12px;
+        text-align: center;
+        font-size: 1rem;
+    }
+</style>

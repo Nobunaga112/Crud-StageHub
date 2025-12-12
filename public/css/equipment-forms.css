@@ -1,0 +1,121 @@
+/* ================================
+   STAGEHUB EQUIPMENT FORM THEME
+   Elegant, centered, minimal beige-gold
+   ================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #F5F0EB;
+    color: #2E1F1D;
+    margin: 0;
+}
+
+/* ---- Main layout ---- */
+.main-content {
+    margin-left: 240px;
+    padding: 3rem;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* ---- Form container ---- */
+.form-card {
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    width: 600px;
+    padding: 2rem 2.5rem;
+    margin-top: 2rem;
+}
+
+.form-card h1 {
+    font-size: 1.8rem;
+    color: #2E1F1D;
+    margin-bottom: 0.8rem;
+    border-bottom: 3px solid #D5BDAF;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.form-card p.subtext {
+    font-size: 0.95rem;
+    color: #6b5e5a;
+    margin-bottom: 1.8rem;
+}
+
+/* ---- Form fields ---- */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+input, select, textarea {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #D5BDAF;
+    font-size: 1rem;
+    background-color: #FCFAF8;
+    color: #2E1F1D;
+    outline: none;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #B99470;
+    box-shadow: 0 0 0 2px rgba(185,148,112,0.25);
+}
+
+/* ---- Buttons ---- */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.btn {
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-cancel {
+    background-color: #D5BDAF;
+    color: #2E1F1D;
+}
+
+.btn-cancel:hover {
+    background-color: #C7A996;
+}
+
+.btn {
+    background-color: #2E1F1D;
+    color: #fff;
+}
+
+.btn:hover {
+    background-color: #4A302D;
+}
+
+/* ---- Back link ---- */
+.back-link {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.back-link a {
+    text-decoration: none;
+    color: #2E1F1D;
+    font-weight: 500;
+}
+
+.back-link a:hover {
+    color: #B99470;
+}

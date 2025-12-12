@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Payment{% endblock %}
+
+{% block body %}
+    <h1 class="page-title">Create New Payment</h1>
+
+    <div class="table-container">
+        {{ include('payment/_form.html.twig', { 
+            'button_label': 'Create Payment',
+            'bookingOptions': bookingOptions 
+        }) }}
+    </div>
+
+    <div class="action-bar">
+        <a href="{{ path('app_payment_index') }}" class="btn btn-show">Back to List</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Equipment Details{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/show-equipment.css') }}">
+{% endblock %}
+
+{% block body %}
+<!-- Modal Overlay -->
+<div class="modal-overlay">
+  <div class="modal-container">
+
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <h2 class="modal-title">Equipment Details</h2>
+      <button class="modal-close-button" id="close-modal">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="modal-body">
+      
+      <!-- Equipment Header Info -->
+      <div class="equipment-info-header">
+        <h3 class="equipment-name">{{ equipment.equipment }}</h3>
+        <p class="equipment-id">Equipment #{{ equipmentDisplayNumber }}</p>
+      </div>
+
+      <!-- Equipment Details -->
+      <div class="details-section">
+        <dl class="details-grid">
+          <div>
+            <dt class="detail-term">Category</dt>
+            <dd class="detail-description">{{ equipment.equipmentType }}</dd>
+          </div>
+
+          <div>
+            <dt class="detail-term">Status</dt>
+            <dd>
+              <span class="status-badge {{ equipment.availability ? 'status-available' : 'status-unavailable' }}">
+                {{ equipment.availability ? 'Available' : 'Not Available' }}
+              </span>
+            </dd>
+          </div>
+
+          <div>
+            <dt class="detail-term">Price Per Day</dt>
+            <dd class="detail-price">₱{{ equipment.price|number_format(2, '.', ',') }}</dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <a href="{{ path('app_equipment_index') }}" class="modal-action-button">
+          Close
+        </a>
+        <a href="{{ path('app_equipment_edit', {'id': equipment.id}) }}" class="modal-action-button">
+          Edit
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const modalOverlay = document.querySelector(".modal-overlay");
+  const closeButton = document.querySelector(".modal-close-button");
+
+  // ✅ Smoothly fade in modal
+  requestAnimationFrame(() => {
+    modalOverlay.classList.add("active");
+  });
+
+  // ✅ Instantly close when clicking close button
+  closeButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = "{{ path('app_equipment_index') }}";
+  });
+});
+</script>
+{% endblock %}

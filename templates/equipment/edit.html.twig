@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Equipment{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/equipment_edit.css') }}">
+{% endblock %}
+
+{% block body %}
+<!-- Modal Overlay -->
+<div class="modal-overlay">
+  <div class="modal-container">
+
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <h2 class="modal-title">Edit Equipment</h2>
+      <button class="modal-close-button" id="close-modal">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="modal-body">
+      {{ form_start(form) }}
+      
+      <div class="form-fields-container">
+  <div>
+    {{ form_label(form.Equipment, 'Name', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.Equipment, {'attr': {'class': 'form-input'}}) }}
+    {{ form_errors(form.Equipment) }}
+  </div>
+
+  <div>
+    {{ form_label(form.Equipment_Type, 'Category', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.Equipment_Type, {'attr': {'class': 'form-select'}}) }}
+    {{ form_errors(form.Equipment_Type) }}
+  </div>
+
+  <div>
+    {{ form_label(form.Availability, 'Available', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.Availability, {'attr': {'class': 'form-select'}}) }}
+    {{ form_errors(form.Availability) }}
+  </div>
+
+  <div class="price-field">
+    {{ form_label(form.Price, 'Price Per Day (₱)', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.Price, {'attr': {'class': 'form-input'}}) }}
+    {{ form_errors(form.Price) }}
+  </div>
+</div>
+
+<div class="modal-footer">
+  <a href="{{ path('app_equipment_index') }}" class="button button-cancel">Cancel</a>
+  <button type="submit" class="button button-save">Save Changes</button>
+</div>
+
+
+      {{ form_end(form) }}
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const modalOverlay = document.querySelector(".modal-overlay");
+  const closeButton = document.querySelector(".modal-close-button");
+  const cancelButton = document.querySelector(".button-cancel");
+
+  // ✅ Smoothly fade in modal
+  requestAnimationFrame(() => {
+    modalOverlay.classList.add("active");
+  });
+
+  // ✅ Close when clicking close button
+  closeButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = "{{ path('app_equipment_index') }}";
+  });
+
+  // ✅ Close when clicking outside modal
+  modalOverlay.addEventListener("click", (e) => {
+    if (e.target === modalOverlay) {
+      window.location.href = "{{ path('app_equipment_index') }}";
+    }
+  });
+});
+</script>
+{% endblock %}

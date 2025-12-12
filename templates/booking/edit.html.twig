@@ -1,0 +1,134 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Booking{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/equipment_edit.css') }}">
+{% endblock %}
+
+{% block body %}
+<!-- Modal Overlay -->
+<div class="modal-overlay">
+  <div class="modal-container">
+
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <h2 class="modal-title">Edit Booking</h2>
+      <button class="modal-close-button" id="close-modal">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="modal-body">
+      {{ form_start(form) }}
+      
+      <div class="form-fields-container">
+        <div>
+          {{ form_label(form.Customer_Name, 'Customer Name', {'label_attr': {'class': 'form-label'}}) }}
+          {{ form_widget(form.Customer_Name, {'attr': {'class': 'form-input'}}) }}
+          {{ form_errors(form.Customer_Name) }}
+        </div>
+
+        <div>
+          {{ form_label(form.Customer_Email, 'Customer Email', {'label_attr': {'class': 'form-label'}}) }}
+          {{ form_widget(form.Customer_Email, {'attr': {'class': 'form-input'}}) }}
+          {{ form_errors(form.Customer_Email) }}
+        </div>
+
+        <div>
+          {{ form_label(form.Start_Date, 'Start Date', {'label_attr': {'class': 'form-label'}}) }}
+          {{ form_widget(form.Start_Date, {'attr': {'class': 'form-input'}}) }}
+          {{ form_errors(form.Start_Date) }}
+        </div>
+
+        <div>
+          {{ form_label(form.End_Date, 'End Date', {'label_attr': {'class': 'form-label'}}) }}
+          {{ form_widget(form.End_Date, {'attr': {'class': 'form-input'}}) }}
+          {{ form_errors(form.End_Date) }}
+        </div>
+
+        <div>
+          {{ form_label(form.Equipment, 'Equipment', {'label_attr': {'class': 'form-label'}}) }}
+          {{ form_widget(form.Equipment, {'attr': {'class': 'form-select'}}) }}
+          {{ form_errors(form.Equipment) }}
+        </div>
+
+        <div class="status-field">
+          {{ form_label(form.Status, 'Status', {'label_attr': {'class': 'form-label'}}) }}
+          {{ form_widget(form.Status, {'attr': {'class': 'form-select'}}) }}
+          {{ form_errors(form.Status) }}
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <a href="{{ path('app_booking_index') }}" class="button button-cancel">Cancel</a>
+        <button type="submit" class="button button-save">Update Booking</button>
+      </div>
+
+      {{ form_end(form) }}
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Add extra margin for status field */
+  .status-field {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Ensure modal footer has proper spacing */
+  .modal-footer {
+    margin-top: 1rem !important;
+  }
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const modalOverlay = document.querySelector(".modal-overlay");
+  const closeButton = document.querySelector(".modal-close-button");
+  const cancelButton = document.querySelector(".button-cancel");
+
+  // ✅ Smoothly fade in modal
+  requestAnimationFrame(() => {
+    modalOverlay.classList.add("active");
+  });
+
+  // ✅ Close when clicking close button
+  closeButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = "{{ path('app_booking_index') }}";
+  });
+
+  // ✅ Close when clicking outside modal
+  modalOverlay.addEventListener("click", (e) => {
+    if (e.target === modalOverlay) {
+      window.location.href = "{{ path('app_booking_index') }}";
+    }
+  });
+
+  // ✅ Format date inputs for better UX
+  const startDateInput = document.querySelector('input[name*="Start_Date"]');
+  const endDateInput = document.querySelector('input[name*="End_Date"]');
+  
+  if (startDateInput) {
+    // Set min attribute to today for Start Date
+    const today = new Date().toISOString().split('T')[0];
+    startDateInput.min = today;
+    
+    // Update End Date min when Start Date changes
+    startDateInput.addEventListener('change', function() {
+      if (endDateInput) {
+        endDateInput.min = this.value;
+        if (endDateInput.value && endDateInput.value < this.value) {
+          endDateInput.value = this.value;
+        }
+      }
+    });
+  }
+});
+</script>
+{% endblock %}
